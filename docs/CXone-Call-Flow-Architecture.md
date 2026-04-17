@@ -11,8 +11,6 @@ This project demonstrates a production‑style CXone inbound voice flow with:
 - Logging and monitoring
 - Transfer logic to skills and agents
 
-The goal is to show how you think as a **senior voice/contact center engineer**: clear separation of concerns, defensive design, and observability.
-
 ---
 
 ## 2. High‑level architecture
@@ -255,14 +253,3 @@ The goal is to show how you think as a **senior voice/contact center engineer**:
 
 ---
 
-## 11. How to talk about this in an interview
-
-**Key talking points:**
-
-- You designed the flow to be **modular**: menus, data dips, callback, and transfers are cleanly separated.
-- You treated the external API as **non‑critical**: if it fails, the call still completes with safe defaults.
-- You built **observability in from day one**: logging at decision points, clear error paths, and callback tracking.
-- You used **business rules** (VIP, delinquent, etc.) to drive routing, not just static menus.
-- You thought about **operations**: how support teams will troubleshoot using logs and reports.
-
-This document, plus the Studio script and a simple diagram, is enough to show senior‑level thinking on CXone call flows.
