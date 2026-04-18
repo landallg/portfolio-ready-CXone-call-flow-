@@ -18,7 +18,8 @@ This document shows the full block-by-block Studio flow for a production-ready A
 ## Conclusion
 
 ## High-Level Flow Diagram
-```mermaid
+
+   ```mermaid
 flowchart TD
 
     %% ===== BEGIN =====
@@ -96,4 +97,6 @@ flowchart TD
     E3 --> END8([End])
 ```
 
-`
+  
+    
+  
