@@ -17,83 +17,87 @@ flowchart TD
     A5 --> A6[PlayAudio: Welcome]
     A6 --> BH[Business Hours Check]
 
-    %% ===== BUSINESS HOURS =====
-    BH -->|Open| CL[Customer Lookup]
-    BH -->|Closed| BH1[PlayAudio: Closed Message]
-    BH1 --> BH2[Skill: AfterHours_Skill]
-    BH2 --> END1([End])
+   ```mermaid
+flowchart TD
 
-    %% ===== CUSTOMER LOOKUP =====
-    CL -->|Success| CL1[SetVariable: customerTier]
-    CL1 --> CL2[Log: Lookup Success]
-    CL2 --> MM[Main Menu]
+%% ===== BEGIN =====
+A0([Begin]) --> A1[SetVariable: contactId = {ContactId}]
+A1 --> A2[SetVariable: ani = {ANI}]
+A2 --> A3[SetVariable: dnis = {DNIS}]
+A3 --> A4[SetVariable: attemptCount = 0]
+A4 --> A5[Log: Call started]
+A5 --> A6[PlayAudio: Welcome]
+A6 --> BH[Business Hours Check]
 
-    CL -->|Error| CL3[Log: Lookup Failed]
-    CL3 --> CL4[SetVariable: customerTier = Unknown]
-    CL4 --> MM
+%% ===== BUSINESS HOURS =====
+BH -->|Open| CL[Customer Lookup]
+BH -->|Closed| BH1[PlayAudio: Closed Message]
+BH1 --> BH2[Skill: AfterHours_Skill]
+BH2 --> END1([End])
 
-    %% ===== MAIN MENU =====
-    MM -->|1: Sales| S1[PlayAudio: Connecting to Sales]
-    S1 --> S2[Skill: Sales_Skill]
-    S2 --> END2([End])
+%% ===== CUSTOMER LOOKUP =====
+CL -->|Success| CL1[SetVariable: customerTier]
+CL1 --> CL2[Log: Lookup Success]
+CL2 --> MM[Main Menu]
 
-    MM -->|2: Support| STR[Support Tier Routing]
+CL -->|Error| CL3[Log: Lookup Failed]
+CL3 --> CL4[SetVariable: customerTier = Unknown]
+CL4 --> MM
 
-    MM -->|3: Callback| CB[Callback Flow]
+%% ===== MAIN MENU =====
+MM -->|1: Sales| S1[PlayAudio: Connecting to Sales]
+S1 --> S2[Skill: Sales_Skill]
+S2 --> END2([End])
 
-    MM -->|Timeout| T1[PlayAudio: Didn't get that]
-    T1 --> T2[Increment attemptCount]
-    T2 -->|attemptCount < 3| MM
-    T2 -->|attemptCount >= 3| MAXA[Max Attempts]
+MM -->|2: Support| STR[Support Tier Routing]
 
-    MM -->|Error| ERR[Error Handler]
+MM -->|3: Callback| CB[Callback Flow]
 
-    %% ===== SUPPORT TIER ROUTING =====
-    STR -->|Gold| G1[PlayAudio: Priority Support]
-    G1 --> G2[Skill: GoldSupport_Skill]
-    G2 --> END3([End])
+MM -->|Timeout| T1[PlayAudio: Didn't get that]
+T1 --> T2[Increment attemptCount]
+T2 -->|attemptCount < 3| MM
+T2 -->|attemptCount >= 3| MAXA[Max Attempts]
 
-    STR -->|Silver| SL1[PlayAudio: Routing to Support]
-    SL1 --> SL2[Skill: SilverSupport_Skill]
-    SL2 --> END4([End])
+MM -->|Error| ERR[Error Handler]
 
-    STR -->|Default| D1[PlayAudio: General Support]
-    D1 --> D2[Skill: GeneralSupport_Skill]
-    D2 --> END5([End])
+%% ===== SUPPORT TIER ROUTING =====
+STR -->|Gold| G1[PlayAudio: Priority Support]
+G1 --> G2[Skill: GoldSupport_Skill]
+G2 --> END3([End])
 
-    %% ===== CALLBACK FLOW =====
-    CB --> CB1[PlayAudio: Enter callback number]
-    CB1 --> CB2[CollectInput: callbackNumber]
-    CB2 -->|Valid| CB3[CreateCallback]
-    CB3 --> CB4[PlayAudio: Callback Scheduled]
-    CB4 --> END6([End])
+STR -->|Silver| SL1[PlayAudio: Routing to Support]
+SL1 --> SL2[Skill: SilverSupport_Skill]
+SL2 --> END4([End])
 
-    CB2 -->|Invalid| CB5[PlayAudio: Invalid Number]
-    CB5 --> CB
+STR -->|Default| D1[PlayAudio: General Support]
+D1 --> D2[Skill: GeneralSupport_Skill]
+D2 --> END5([End])
 
-    %% ===== MAX ATTEMPTS =====
-    MAXA --> MA1[PlayAudio: Trouble Understanding]
-    MA1 --> MA2[Skill: GeneralSupport_Skill]
-    MA2 --> END7([End])
+%% ===== CALLBACK FLOW =====
+CB --> CB1[PlayAudio: Enter callback number]
+CB1 --> CB2[CollectInput: callbackNumber]
+CB2 -->|Valid| CB3[CreateCallback]
+CB3 --> CB4[PlayAudio: Callback Scheduled]
+CB4 --> END6([End])
 
-    %% ===== ERROR HANDLER =====
-    ERR --> E1[PlayAudio: Error Message]
-    E1 --> E2[Log: Error Handler Triggered]
-    E2 --> E3[Skill: GeneralSupport_Skill]
-    E3 --> END8([End])
+CB2 -->|Invalid| CB5[PlayAudio: Invalid Number]
+CB5 --> CB
+
+%% ===== MAX ATTEMPTS =====
+MAXA --> MA1[PlayAudio: Trouble Understanding]
+MA1 --> MA2[Skill: GeneralSupport_Skill]
+MA2 --> END7([End])
+
+%% ===== ERROR HANDLER =====
+ERR --> E1[PlayAudio: Error Message]
+E1 --> E2[Log: Error Handler Triggered]
+E2 --> E3[Skill: GeneralSupport_Skill]
+E3 --> END8([End])
 ```
 
-## Block-by-Block Breakdown
-
-
-## Error Handling
-
-## Callback Logic
-
-## Data Dips
-
-## Conclusion
-
+    
+    
+   
 
 
   
