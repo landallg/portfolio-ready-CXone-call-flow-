@@ -26,14 +26,7 @@ flowchart TD
 ```
 
 
-    %% ===== BEGIN =====
-    A0([Begin]) --> A1[SetVariable: contactId = {ContactId}]
-    A1 --> A2[SetVariable: ani = {ANI}]
-    A2 --> A3[SetVariable: dnis = {DNIS}]
-    A3 --> A4[SetVariable: attemptCount = 0]
-    A4 --> A5[Log: Call started]
-    A5 --> A6[PlayAudio: Welcome]
-    A6 --> BH[Business Hours Check]
+    
 
     %% ===== BUSINESS HOURS =====
     BH -->|Open| CL[Customer Lookup]
