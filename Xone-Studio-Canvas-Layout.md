@@ -5,21 +5,7 @@ This document shows the full block-by-block Studio flow for a production-ready A
 ## Overview
 
 ## High-Level Flow Diagram
-
-## Block-by-Block Breakdown
-
-
-## Error Handling
-
-## Callback Logic
-
-## Data Dips
-
-## Conclusion
-
-## High-Level Flow Diagram
-
-   ```mermaid
+```mermaid
 flowchart TD
 
     %% ===== BEGIN =====
@@ -95,6 +81,24 @@ flowchart TD
     E1 --> E2[Log: Error Handler Triggered]
     E2 --> E3[Skill: GeneralSupport_Skill]
     E3 --> END8([End])
+```
+
+## Block-by-Block Breakdown
+
+
+## Error Handling
+
+## Callback Logic
+
+## Data Dips
+
+## Conclusion
+
+
+
+  
+   
+    
 ```
 
   
