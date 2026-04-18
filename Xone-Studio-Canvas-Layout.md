@@ -21,7 +21,6 @@ This document shows the full block-by-block Studio flow for a production-ready A
 ```mermaid
 flowchart TD
    ...diagram code here...
-flowchart TD
 
     %% ===== BEGIN =====
     A0([Begin]) --> A1[SetVariable: contactId = {ContactId}]
