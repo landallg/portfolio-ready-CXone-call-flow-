@@ -11,6 +11,7 @@ This project demonstrates a production‑style CXone inbound voice flow with:
 - Logging and monitoring
 - Transfer logic to skills and agents
 
+This document outlines the structure and logic of the CXone call flow, including routing decisions, error paths, and key design considerations.
 ---
 
 ## 2. High‑level architecture
