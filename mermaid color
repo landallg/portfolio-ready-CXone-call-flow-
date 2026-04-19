@@ -1,0 +1,48 @@
+```mermaid
+flowchart LR
+
+%% ===== BEGIN =====
+A0([Begin]) --> A1[SetVariable: contactId = {ContactId}]
+A1 --> A2[SetVariable: ani = {ANI}]
+A2 --> A3[SetVariable: dnis = {DNIS}]
+A3 --> A4[SetVariable: attemptCount = 0]
+A4 --> A5[Log: Call started]
+A5 --> A6[PlayAudio: Welcome]
+A6 --> BH{Business Hours Check}
+
+%% ===== BUSINESS HOURS =====
+BH -->|Open| CL[Customer Lookup]
+BH -->|Closed| BH1[PlayAudio: Closed Message]
+BH1 --> BH2[Skill: AfterHours_Skill]
+BH2 --> END1([End])
+
+%% ===== CUSTOMER LOOKUP =====
+CL -->|Success| CL1[SetVariable: customerTier]
+CL1 --> CL2[Log: Lookup Success]
+CL2 --> MM{Main Menu}
+
+CL -->|Error| CL3[Log: Lookup Failed]
+CL3 --> CL4[SetVariable: customerTier = Unknown]
+CL4 --> MM
+
+%% ===== MAIN MENU =====
+MM -->|1: Sales| S1[PlayAudio: Connecting to Sales]
+S1 --> S2[Skill: Sales_Skill]
+S2 --> END2([End])
+
+%% ===== COLOR DEFINITIONS =====
+classDef startEnd stroke:#000000,stroke-width:3px;
+classDef setvar stroke:#1E90FF,stroke-width:3px;
+classDef log stroke:#FF8C00,stroke-width:3px;
+classDef playaudio stroke:#32CD32,stroke-width:3px;
+classDef decision stroke:#8A2BE2,stroke-width:3px;
+classDef skill stroke:#DC143C,stroke-width:3px;
+
+%% ===== CLASS ASSIGNMENTS =====
+class A0,END1,END2 startEnd;
+class A1,A2,A3,A4,CL1,CL4 setvar;
+class A5,CL2,CL3 log;
+class A6,BH1,S1 playaudio;
+class BH,MM decision;
+class BH2,S2 skill;
+```
