@@ -7,9 +7,8 @@ This project demonstrates a production‑ready CXone call flow including:
 - Error handling and failover paths
 - Logging and monitoring strategy
 - Transfer logic to skills and agents
-## 📄 Full Architecture Documentation
 
-Skills Used
+- Skills Used
 CXone Studio Engineering — designed a production‑style inbound voice flow with structured routing, variable management, data dips, callback logic, and error‑resilient paths
 
 API‑Driven Workflows — implemented external customer lookup logic with tier assignment, fallback handling, and operational logging
@@ -23,6 +22,9 @@ IVR/ACD Logic — menu routing, after‑hours handling, exception paths, and cal
 Diagramming & Visualization — created high‑level and block‑level flow diagrams using Mermaid to clearly communicate system logic
 
 Technical Documentation — produced architecture documentation, flow explanations, and design rationale for technical reviewers and hiring managers
+
+## 📄 Full Architecture Documentation
+
 ➡️ [View the complete call flow architecture](docs/CXone-Call-Flow-Architecture.md)
 
 This repository includes the flow design, documentation, and supporting AWS components used in the solution.
